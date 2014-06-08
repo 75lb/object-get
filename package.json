@@ -1,0 +1,21 @@
+{
+  "name": "object-ting",
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "version": "0.0.0",
+  "description": "Useful functions for working with objects",
+  "repository": "https://github.com/75lb/object-ting.git",
+  "main": "./lib/object-ting.js",
+  "keywords": [],
+  "scripts": {
+    "test": "tape test/*.js",
+    "lint": "jshint lib/*.js test/*.js; echo",
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+  },
+  "devDependencies": {
+    "jsdoc-to-markdown": "^0.1.1",
+    "tape": "^2.13.2"
+  },
+  "dependencies": {
+    "array-ting": "^0.1.0"
+  }
+}
