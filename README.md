@@ -20,8 +20,8 @@ var o = require("object-ting");
 * [omit(object, toOmit)](#module_object-ting.omit)
 * [every(object, iterator)](#module_object-ting.every)
 * [each(object, callback)](#module_object-ting.each)
-* [exists(a, b)](#module_object-ting.exists)
-* [without(input, toRemove)](#module_object-ting.without)
+* [exists(object, query)](#module_object-ting.exists)
+* [without(object, toRemove)](#module_object-ting.without)
 
 
 
@@ -148,12 +148,12 @@ undefined
 
 
 <a name="module_object-ting.exists"></a>
-###exists(a, b)
+###exists(object, query)
 returns true if the key/value pairs in `b` also exist identically in `a`
 
 
-- a `Object` the object to examine  
-- b `Object` the key/value pairs to look for  
+- object `Object` the object to examine  
+- query `Object` the key/value pairs to look for  
 
 
 **Returns**: `boolean`
@@ -169,23 +169,22 @@ true
 
 
 <a name="module_object-ting.without"></a>
-###without(input, toRemove)
-If the input is an array, returns the input minus the specified values.
-If the input is an object, it returns a clone of the object minus the specified properties.
+###without(object, toRemove)
+returns a clone of the object minus the specified properties.
 
 
-- input `Array | Object` the input array or object  
-- toRemove `*` a single, or array of values to omit  
+- object `Object` the input object  
+- toRemove `string | Array.<string>` a single property, or array of properties to omit  
 
 
-**Returns**: `Array | Object`
+**Returns**: `Object`
 
 ####Example
 ```js
-> o.without([ 1, 2, 3 ], 2)
-[ 1, 3 ]
-> o.without([ 1, 2, 3 ], [ 2, 3 ])
-[ 1 ]
+> o.without({ a: 1, b: 2, c: 3}, "b")
+{ a: 1, c: 3 }
+> o.without({ a: 1, b: 2, c: 3}, ["b", "a"])
+{ c: 3 }
 ```
 
 
