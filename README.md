@@ -20,7 +20,7 @@ var o = require("object-ting");
 * [omit(object, toOmit)](#module_object-ting.omit)
 * [every(object, iterator)](#module_object-ting.every)
 * [each(object, callback)](#module_object-ting.each)
-* [queryFoundInObject(a, b)](#module_object-ting.queryFoundInObject)
+* [exists(a, b)](#module_object-ting.exists)
 * [without(input, toRemove)](#module_object-ting.without)
 
 
@@ -37,22 +37,22 @@ Merge a list of objects, left to right, into one.
 - ...object `Object` a sequence of Object instances to be extended  
 
 
-
-
-####Example
-```js
-> w.extend({}, { one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
+**Returns**: `Object` - ```js
+> o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
 { one: 'one',
   three: 3,
   two: 2,
   four: 4 }
 ```
 
+####Example
+
+
 
 
 <a name="module_object-ting.clone"></a>
 ###clone(input)
-Clones any non-primative object
+Clones an object or array
 
 
 - input `Object | Array` the input to clone  
@@ -64,15 +64,15 @@ Clones any non-primative object
 ```js
 > date = new Date()
 Fri May 09 2014 13:54:34 GMT+0200 (CEST)
-> w.clone(date)
+> o.clone(date)
 {}  // a Date instance doesn't own any properties
 > date.clive = "hater"
 'hater'
-> w.clone(date)
+> o.clone(date)
 { clive: 'hater' }
 > array = [1,2,3]
 [ 1, 2, 3 ]
-> newArray = w.clone(array)
+> newArray = o.clone(array)
 [ 1, 2, 3 ]
 > array === newArray
 false
@@ -93,7 +93,7 @@ Returns a clone of the input object, minus the specified properties
 
 ####Example
 ```js
-> w.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
+> o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
 { one: 1, three: 3 }
 ```
 
@@ -114,9 +114,9 @@ Returns true if the supplied iterator function returns true for every property i
 ```js
 > function aboveTen(input){ return input > 10; }
 undefined
-> w.every({ eggs: 12, carrots: 30, peas: 100 }, aboveTen)
+> o.every({ eggs: 12, carrots: 30, peas: 100 }, aboveTen)
 true
-> w.every({ eggs: 6, carrots: 30, peas: 100 }, aboveTen)
+> o.every({ eggs: 6, carrots: 30, peas: 100 }, aboveTen)
 false
 ```
 
@@ -139,7 +139,7 @@ Runs the iterator function against every key/value pair in the input object
 undefined
 > function addToTotal(n){ total += n; }
 undefined
-> w.each({ eggs: 3, celery: 2, carrots: 1 }, addToTotal)
+> o.each({ eggs: 3, celery: 2, carrots: 1 }, addToTotal)
 undefined
 > total
 6
@@ -147,8 +147,8 @@ undefined
 
 
 
-<a name="module_object-ting.queryFoundInObject"></a>
-###queryFoundInObject(a, b)
+<a name="module_object-ting.exists"></a>
+###exists(a, b)
 returns true if the key/value pairs in `b` also exist identically in `a`
 
 
@@ -158,6 +158,13 @@ returns true if the key/value pairs in `b` also exist identically in `a`
 
 **Returns**: `boolean`
 
+####Example
+```js
+> o.exists({ a: 1, b: 2}, {a: 0})
+false
+> o.exists({ a: 1, b: 2}, {a: 1})
+true
+```
 
 
 
@@ -175,9 +182,9 @@ If the input is an object, it returns a clone of the object minus the specified 
 
 ####Example
 ```js
-> w.without([ 1, 2, 3 ], 2)
+> o.without([ 1, 2, 3 ], 2)
 [ 1, 3 ]
-> w.without([ 1, 2, 3 ], [ 2, 3 ])
+> o.without([ 1, 2, 3 ], [ 2, 3 ])
 [ 1 ]
 ```
 
