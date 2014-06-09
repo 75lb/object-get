@@ -37,16 +37,16 @@ Merge a list of objects, left to right, into one.
 - ...object `Object` a sequence of Object instances to be extended  
 
 
-**Returns**: `Object` - ```js
+**Returns**: `Object`
+
+####Example
+```js
 > o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
 { one: 'one',
   three: 3,
   two: 2,
   four: 4 }
 ```
-
-####Example
-
 
 
 
