@@ -14,6 +14,15 @@ var o = require("object-ting");
 
 
 
+**Contents**
+* [extend(...object)](#module_object-ting.extend)
+* [clone(input)](#module_object-ting.clone)
+* [omit(object, toOmit)](#module_object-ting.omit)
+* [every(object, iterator)](#module_object-ting.every)
+* [each(object, callback)](#module_object-ting.each)
+* [queryFoundInObject(a, b)](#module_object-ting.queryFoundInObject)
+* [without(input, toRemove)](#module_object-ting.without)
+
 
 
 
@@ -21,11 +30,11 @@ var o = require("object-ting");
 
 
 <a name="module_object-ting.extend"></a>
-###o.extend(object)
+###extend(...object)
 Merge a list of objects, left to right, into one.
 
 
-- object `Object` a sequence of Object instances to be extended  
+- ...object `Object` a sequence of Object instances to be extended  
 
 
 
@@ -42,7 +51,7 @@ Merge a list of objects, left to right, into one.
 
 
 <a name="module_object-ting.clone"></a>
-###o.clone(input)
+###clone(input)
 Clones any non-primative object
 
 
@@ -72,7 +81,7 @@ false
 
 
 <a name="module_object-ting.omit"></a>
-###o.omit(object, toOmit)
+###omit(object, toOmit)
 Returns a clone of the input object, minus the specified properties
 
 
@@ -91,7 +100,7 @@ Returns a clone of the input object, minus the specified properties
 
 
 <a name="module_object-ting.every"></a>
-###o.every(object, iterator)
+###every(object, iterator)
 Returns true if the supplied iterator function returns true for every property in the object
 
 
@@ -114,7 +123,7 @@ false
 
 
 <a name="module_object-ting.each"></a>
-###o.each(object, callback)
+###each(object, callback)
 Runs the iterator function against every key/value pair in the input object
 
 
@@ -139,7 +148,7 @@ undefined
 
 
 <a name="module_object-ting.queryFoundInObject"></a>
-###o.queryFoundInObject(a, b)
+###queryFoundInObject(a, b)
 returns true if the key/value pairs in `b` also exist identically in `a`
 
 
@@ -153,7 +162,7 @@ returns true if the key/value pairs in `b` also exist identically in `a`
 
 
 <a name="module_object-ting.without"></a>
-###o.without(input, toRemove)
+###without(input, toRemove)
 If the input is an array, returns the input minus the specified values.
 If the input is an object, it returns a clone of the object minus the specified properties.
 
