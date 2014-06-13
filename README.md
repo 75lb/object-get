@@ -1,27 +1,27 @@
-[![view on npm](http://img.shields.io/npm/v/object-ting.svg)](https://www.npmjs.org/package/object-ting)
-[![npm module downloads per month](http://img.shields.io/npm/dm/object-ting.svg)](https://www.npmjs.org/package/object-ting)
-[![Build Status](https://travis-ci.org/75lb/object-ting.svg?branch=master)](https://travis-ci.org/75lb/object-ting)
-[![Dependency Status](https://david-dm.org/75lb/object-ting.svg)](https://david-dm.org/75lb/object-ting)
+[![view on npm](http://img.shields.io/npm/v/object-tools.svg)](https://www.npmjs.org/package/object-tools)
+[![npm module downloads per month](http://img.shields.io/npm/dm/object-tools.svg)](https://www.npmjs.org/package/object-tools)
+[![Build Status](https://travis-ci.org/75lb/object-tools.svg?branch=master)](https://travis-ci.org/75lb/object-tools)
+[![Dependency Status](https://david-dm.org/75lb/object-tools.svg)](https://david-dm.org/75lb/object-tools)
 
 
-#object-ting
+#object-tools
 Useful functions for working with objects
 
 ####Example
 ```js
-var o = require("object-ting");
+var o = require("object-tools");
 ```
 
 
 
 **Contents**
-* [extend(...object)](#module_object-ting.extend)
-* [clone(input)](#module_object-ting.clone)
-* [omit(object, toOmit)](#module_object-ting.omit)
-* [every(object, iterator)](#module_object-ting.every)
-* [each(object, callback)](#module_object-ting.each)
-* [exists(object, query)](#module_object-ting.exists)
-* [without(object, toRemove)](#module_object-ting.without)
+* [extend(...object)](#module_object-tools.extend)
+* [clone(input)](#module_object-tools.clone)
+* [omit(object, toOmit)](#module_object-tools.omit)
+* [every(object, iterator)](#module_object-tools.every)
+* [each(object, callback)](#module_object-tools.each)
+* [exists(object, query)](#module_object-tools.exists)
+* [without(object, toRemove)](#module_object-tools.without)
 
 
 
@@ -29,7 +29,7 @@ var o = require("object-ting");
 
 
 
-<a name="module_object-ting.extend"></a>
+<a name="module_object-tools.extend"></a>
 ###extend(...object)
 Merge a list of objects, left to right, into one.
 
@@ -50,7 +50,7 @@ Merge a list of objects, left to right, into one.
 
 
 
-<a name="module_object-ting.clone"></a>
+<a name="module_object-tools.clone"></a>
 ###clone(input)
 Clones an object or array
 
@@ -80,13 +80,13 @@ false
 
 
 
-<a name="module_object-ting.omit"></a>
+<a name="module_object-tools.omit"></a>
 ###omit(object, toOmit)
 Returns a clone of the input object, minus the specified properties
 
 
 - object `Object` the object to clone  
-- toOmit `string[]` an array of property names to omit from the clone  
+- toOmit `Array.<string>` an array of property names to omit from the clone  
 
 
 **Returns**: `Object`
@@ -99,7 +99,7 @@ Returns a clone of the input object, minus the specified properties
 
 
 
-<a name="module_object-ting.every"></a>
+<a name="module_object-tools.every"></a>
 ###every(object, iterator)
 Returns true if the supplied iterator function returns true for every property in the object
 
@@ -122,7 +122,7 @@ false
 
 
 
-<a name="module_object-ting.each"></a>
+<a name="module_object-tools.each"></a>
 ###each(object, callback)
 Runs the iterator function against every key/value pair in the input object
 
@@ -147,7 +147,7 @@ undefined
 
 
 
-<a name="module_object-ting.exists"></a>
+<a name="module_object-tools.exists"></a>
 ###exists(object, query)
 returns true if the key/value pairs in `b` also exist identically in `a`
 
@@ -168,7 +168,7 @@ true
 
 
 
-<a name="module_object-ting.without"></a>
+<a name="module_object-tools.without"></a>
 ###without(object, toRemove)
 returns a clone of the object minus the specified properties.
 
