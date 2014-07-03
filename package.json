@@ -12,12 +12,12 @@
     "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^0.1.1",
+    "jsdoc-to-markdown": "^0.2",
     "tap-spec": "^0.2.0",
     "tape": "^2.13.2"
   },
   "dependencies": {
-    "array-tools": "^1.0.0",
+    "array-tools": "^1.1.4",
     "typical": "^1.0.0"
   }
 }
