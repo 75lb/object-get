@@ -149,7 +149,8 @@ undefined
 
 <a name="module_object-tools.exists"></a>
 ###exists(object, query)
-returns true if the key/value pairs in `b` also exist identically in `a`
+returns true if the key/value pairs in `query` also exist identically in `object`.
+Also supports RegExp values in `query`. If the `query` property begins with `!` then test is negated.
 
 
 - object `Object` the object to examine  
@@ -163,6 +164,12 @@ returns true if the key/value pairs in `b` also exist identically in `a`
 > o.exists({ a: 1, b: 2}, {a: 0})
 false
 > o.exists({ a: 1, b: 2}, {a: 1})
+true
+> o.exists({ a: 1, b: 2}, {"!a": 1})
+false
+> o.exists({ name: "clive hater" }, { name: /clive/ })
+true
+> o.exists({ name: "clive hater" }, { "!name": /ian/ })
 true
 ```
 
