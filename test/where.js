@@ -3,7 +3,7 @@ var test = require("tape"),
 
 test(".where(object, function)", function(t){
     var object = { a: 1, b: 0, c: 2 };
-    var result = o.where(object, function(key, value){
+    var result = o.where(object, function(value, key){
         return value > 0;
     });
     t.deepEqual(result, { a: 1, c: 2 });

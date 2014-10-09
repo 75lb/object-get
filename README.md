@@ -168,14 +168,14 @@ Returns a new object containing the key/value pairs which satisfy the query
 | Param | Type | Description |
 | ----- | ---- | ----------- |
 | object | <code>object</code> | The input object |
-| query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function must return `true` to be included in the output. |
+| query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function is called with `(value, key)` and must return `true` to be included in the output. |
 
 **Since**: 1.2.0  
 **Example**  
 ```js
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
-> o.where(object, function(key, value){
+> o.where(object, function(value, key){
       return value > 0;
   });
 { a: 1, c: 2 }
@@ -191,14 +191,14 @@ identical to `o.where(object, query)` with one exception - the found properties 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
 | object | <code>object</code> | The input object |
-| query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function must return `true` to be included in the output. |
+| query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function is called with `(value, key)` and must return `true` to be included in the output. |
 
 **Since**: 1.2.0  
 **Example**  
 ```js
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
-> o.where(object, function(key, value){
+> o.where(object, function(value, key){
       return value > 0;
   });
 { a: 1, c: 2 }
