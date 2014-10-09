@@ -20,7 +20,7 @@ var o = require("object-tools");
   * [.extend(...object)](#module_object-tools.extend) ⇒ <code>object</code>
   * [.clone(input)](#module_object-tools.clone) ⇒ <code>object</code> \| <code>array</code>
   * ~~[.omit(object, toOmit)](#module_object-tools.omit) ⇒ <code>object</code>~~
-  * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>Boolean</code>
+  * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>boolean</code>
   * [.each(object, callback)](#module_object-tools.each)
   * [.exists(object, query)](#module_object-tools.exists) ⇒ <code>boolean</code>
   * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>object</code>
@@ -70,6 +70,7 @@ false
 ```
 <a name="module_object-tools.omit"></a>
 ##~~o.omit(object, toOmit) ⇒ <code>object</code>~~
+***Deprecated:*** Replaced by `o.without`  
 Returns a clone of the input object, minus the specified properties
 
 | Param | Type | Description |
@@ -77,14 +78,13 @@ Returns a clone of the input object, minus the specified properties
 | object | <code>object</code> | the object to clone |
 | toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
 
-***Deprecated***  
 **Example**  
 ```js
 > o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
 { one: 1, three: 3 }
 ```
 <a name="module_object-tools.every"></a>
-##o.every(object, iterator) ⇒ <code>Boolean</code>
+##o.every(object, iterator) ⇒ <code>boolean</code>
 Returns true if the supplied iterator function returns true for every property in the object
 
 | Param | Type | Description |
