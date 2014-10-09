@@ -9,7 +9,7 @@ Useful functions for working with objects
 
 **Todo**
 
-- a where function, e.g. `o.where({ a:1, b:0 }, function(key, value){ return value > 0; })`
+- [x] a where function, e.g. `o.where({ a:1, b:0 }, function(key, value){ return value > 0; })`
 
 **Example**  
 ```js
@@ -19,12 +19,13 @@ var o = require("object-tools");
 * [object-tools](#module_object-tools)
   * [.extend(...object)](#module_object-tools.extend) ⇒ <code>Object</code>
   * [.clone(input)](#module_object-tools.clone) ⇒ <code>Object</code> \| <code>Array</code>
-  * [.omit(object, toOmit)](#module_object-tools.omit) ⇒ <code>Object</code>
+  * [~~.omit(object, toOmit)~~](#module_object-tools.omit) ⇒ <code>Object</code>
   * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>Boolean</code>
   * [.each(object, callback)](#module_object-tools.each)
   * [.exists(object, query)](#module_object-tools.exists) ⇒ <code>boolean</code>
   * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>Object</code>
   * [.where(object, query)](#module_object-tools.where) ⇒ <code>object</code>
+  * [.extract(object, query)](#module_object-tools.extract) ⇒ <code>object</code>
 
 <a name="module_object-tools.extend"></a>
 ##o.extend(...object) ⇒ <code>Object</code>
@@ -68,7 +69,7 @@ Fri May 09 2014 13:54:34 GMT+0200 (CEST)
 false
 ```
 <a name="module_object-tools.omit"></a>
-##o.omit(object, toOmit) ⇒ <code>Object</code>
+##~~o.omit(object, toOmit) ⇒ <code>Object</code>~~
 Returns a clone of the input object, minus the specified properties
 
 | Param | Type | Description |
@@ -76,6 +77,7 @@ Returns a clone of the input object, minus the specified properties
 | object | <code>Object</code> | the object to clone |
 | toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
 
+***Deprecated***  
 **Example**  
 ```js
 > o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
@@ -180,4 +182,25 @@ Returns a new object containing the key/value pairs which satisfy the query
 { b: 0 }
 > object
 { a: 1, b: 0, c: 2 }
+```
+<a name="module_object-tools.extract"></a>
+##o.extract(object, query) ⇒ <code>object</code>
+identical to `o.where(object, query)` with one exception - the found properties are removed from the input `object`
+
+| Param | Type | Description |
+| ----- | ---- | ----------- |
+| object | <code>object</code> | The input object |
+| query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function must return `true` to be included in the output. |
+
+**Since**: 1.2.0  
+**Example**  
+```js
+> object = { a: 1, b: 0, c: 2 }
+{ a: 1, b: 0, c: 2 }
+> o.where(object, function(key, value){
+      return value > 0;
+  });
+{ a: 1, c: 2 }
+> object
+{ b: 0 }
 ```
