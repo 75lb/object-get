@@ -7,30 +7,33 @@
 #object-tools
 Useful functions for working with objects
 
+**Todo**
+
+- a where function, e.g. `o.where({ a:1, b:0 }, function(key, value){ return value > 0; })`
+
 **Example**  
 ```js
 var o = require("object-tools");
 ```
 
 * [object-tools](#module_object-tools)
-  * [~extend(...object)](#module_object-tools..extend) ⇒ <code>Object</code>
-  * [~clone(input)](#module_object-tools..clone) ⇒ <code>Object</code> \| <code>Array</code>
-  * [~omit(object, toOmit)](#module_object-tools..omit) ⇒ <code>Object</code>
-  * [~every(object, iterator)](#module_object-tools..every) ⇒ <code>Boolean</code>
-  * [~each(object, callback)](#module_object-tools..each)
-  * [~exists(object, query)](#module_object-tools..exists) ⇒ <code>boolean</code>
-  * [~without(object, toRemove)](#module_object-tools..without) ⇒ <code>Object</code>
-  * [~where(object, query)](#module_object-tools..where) ⇒ <code>object</code>
+  * [.extend(...object)](#module_object-tools.extend) ⇒ <code>Object</code>
+  * [.clone(input)](#module_object-tools.clone) ⇒ <code>Object</code> \| <code>Array</code>
+  * [.omit(object, toOmit)](#module_object-tools.omit) ⇒ <code>Object</code>
+  * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>Boolean</code>
+  * [.each(object, callback)](#module_object-tools.each)
+  * [.exists(object, query)](#module_object-tools.exists) ⇒ <code>boolean</code>
+  * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>Object</code>
+  * [.where(object, query)](#module_object-tools.where) ⇒ <code>object</code>
 
-<a name="module_object-tools..extend"></a>
-##object-tools~extend(...object) ⇒ <code>Object</code>
+<a name="module_object-tools.extend"></a>
+##o.extend(...object) ⇒ <code>Object</code>
 Merge a list of objects, left to right, into one.
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
 | ...object | <code>Object</code> | a sequence of Object instances to be extended |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
@@ -39,15 +42,14 @@ Merge a list of objects, left to right, into one.
   two: 2,
   four: 4 }
 ```
-<a name="module_object-tools..clone"></a>
-##object-tools~clone(input) ⇒ <code>Object</code> \| <code>Array</code>
+<a name="module_object-tools.clone"></a>
+##o.clone(input) ⇒ <code>Object</code> \| <code>Array</code>
 Clones an object or array
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
 | input | <code>Object</code> \| <code>Array</code> | the input to clone |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > date = new Date()
@@ -65,8 +67,8 @@ Fri May 09 2014 13:54:34 GMT+0200 (CEST)
 > array === newArray
 false
 ```
-<a name="module_object-tools..omit"></a>
-##object-tools~omit(object, toOmit) ⇒ <code>Object</code>
+<a name="module_object-tools.omit"></a>
+##o.omit(object, toOmit) ⇒ <code>Object</code>
 Returns a clone of the input object, minus the specified properties
 
 | Param | Type | Description |
@@ -74,14 +76,13 @@ Returns a clone of the input object, minus the specified properties
 | object | <code>Object</code> | the object to clone |
 | toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
 { one: 1, three: 3 }
 ```
-<a name="module_object-tools..every"></a>
-##object-tools~every(object, iterator) ⇒ <code>Boolean</code>
+<a name="module_object-tools.every"></a>
+##o.every(object, iterator) ⇒ <code>Boolean</code>
 Returns true if the supplied iterator function returns true for every property in the object
 
 | Param | Type | Description |
@@ -89,7 +90,6 @@ Returns true if the supplied iterator function returns true for every property i
 | object | <code>Object</code> | the object to inspect |
 | iterator | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > function aboveTen(input){ return input > 10; }
@@ -99,8 +99,8 @@ true
 > o.every({ eggs: 6, carrots: 30, peas: 100 }, aboveTen)
 false
 ```
-<a name="module_object-tools..each"></a>
-##object-tools~each(object, callback)
+<a name="module_object-tools.each"></a>
+##o.each(object, callback)
 Runs the iterator function against every key/value pair in the input object
 
 | Param | Type | Description |
@@ -108,7 +108,6 @@ Runs the iterator function against every key/value pair in the input object
 | object | <code>Object</code> | the object to iterate |
 | callback | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > var total = 0;
@@ -120,8 +119,8 @@ undefined
 > total
 6
 ```
-<a name="module_object-tools..exists"></a>
-##object-tools~exists(object, query) ⇒ <code>boolean</code>
+<a name="module_object-tools.exists"></a>
+##o.exists(object, query) ⇒ <code>boolean</code>
 returns true if the key/value pairs in `query` also exist identically in `object`.
 Also supports RegExp values in `query`. If the `query` property begins with `!` then test is negated.
 
@@ -130,7 +129,6 @@ Also supports RegExp values in `query`. If the `query` property begins with `!` 
 | object | <code>Object</code> | the object to examine |
 | query | <code>Object</code> | the key/value pairs to look for |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > o.exists({ a: 1, b: 2}, {a: 0})
@@ -144,8 +142,8 @@ true
 > o.exists({ name: "clive hater" }, { "!name": /ian/ })
 true
 ```
-<a name="module_object-tools..without"></a>
-##object-tools~without(object, toRemove) ⇒ <code>Object</code>
+<a name="module_object-tools.without"></a>
+##o.without(object, toRemove) ⇒ <code>Object</code>
 returns a clone of the object minus the specified properties.
 
 | Param | Type | Description |
@@ -153,7 +151,6 @@ returns a clone of the object minus the specified properties.
 | object | <code>Object</code> | the input object |
 | toRemove | <code>string</code> \| <code>Array.&lt;string&gt;</code> | a single property, or array of properties to omit |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Example**  
 ```js
 > o.without({ a: 1, b: 2, c: 3}, "b")
@@ -161,8 +158,8 @@ returns a clone of the object minus the specified properties.
 > o.without({ a: 1, b: 2, c: 3}, ["b", "a"])
 { c: 3 }
 ```
-<a name="module_object-tools..where"></a>
-##object-tools~where(object, query) ⇒ <code>object</code>
+<a name="module_object-tools.where"></a>
+##o.where(object, query) ⇒ <code>object</code>
 Returns a new object containing the key/value pairs which satisfy the query
 
 | Param | Type | Description |
@@ -170,7 +167,6 @@ Returns a new object containing the key/value pairs which satisfy the query
 | object | <code>object</code> | The input object |
 | query | <code>Array.&lt;string&gt;</code> \| <code>function</code> | Either an array of property names, or a function. The function must return `true` to be included in the output. |
 
-**Scope**: inner function of <code>[object-tools](#module_object-tools)</code>  
 **Since**: 1.2.0  
 **Example**  
 ```js
