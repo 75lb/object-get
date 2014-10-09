@@ -71,6 +71,7 @@ false
 <a name="module_object-tools.omit"></a>
 ##~~o.omit(object, toOmit) ⇒ <code>object</code>~~
 ***Deprecated:*** Replaced by `o.without`  
+
 Returns a clone of the input object, minus the specified properties
 
 | Param | Type | Description |
