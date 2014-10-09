@@ -17,23 +17,23 @@ var o = require("object-tools");
 ```
 
 * [object-tools](#module_object-tools)
-  * [.extend(...object)](#module_object-tools.extend) ⇒ <code>Object</code>
-  * [.clone(input)](#module_object-tools.clone) ⇒ <code>Object</code> \| <code>Array</code>
-  * [~~.omit(object, toOmit)~~](#module_object-tools.omit) ⇒ <code>Object</code>
+  * [.extend(...object)](#module_object-tools.extend) ⇒ <code>object</code>
+  * [.clone(input)](#module_object-tools.clone) ⇒ <code>object</code> \| <code>array</code>
+  * ~~[.omit(object, toOmit)](#module_object-tools.omit) ⇒ <code>object</code>~~
   * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>Boolean</code>
   * [.each(object, callback)](#module_object-tools.each)
   * [.exists(object, query)](#module_object-tools.exists) ⇒ <code>boolean</code>
-  * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>Object</code>
+  * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>object</code>
   * [.where(object, query)](#module_object-tools.where) ⇒ <code>object</code>
   * [.extract(object, query)](#module_object-tools.extract) ⇒ <code>object</code>
 
 <a name="module_object-tools.extend"></a>
-##o.extend(...object) ⇒ <code>Object</code>
+##o.extend(...object) ⇒ <code>object</code>
 Merge a list of objects, left to right, into one.
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| ...object | <code>Object</code> | a sequence of Object instances to be extended |
+| ...object | <code>object</code> | a sequence of object instances to be extended |
 
 **Example**  
 ```js
@@ -44,12 +44,12 @@ Merge a list of objects, left to right, into one.
   four: 4 }
 ```
 <a name="module_object-tools.clone"></a>
-##o.clone(input) ⇒ <code>Object</code> \| <code>Array</code>
+##o.clone(input) ⇒ <code>object</code> \| <code>array</code>
 Clones an object or array
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| input | <code>Object</code> \| <code>Array</code> | the input to clone |
+| input | <code>object</code> \| <code>array</code> | the input to clone |
 
 **Example**  
 ```js
@@ -69,12 +69,12 @@ Fri May 09 2014 13:54:34 GMT+0200 (CEST)
 false
 ```
 <a name="module_object-tools.omit"></a>
-##~~o.omit(object, toOmit) ⇒ <code>Object</code>~~
+##~~o.omit(object, toOmit) ⇒ <code>object</code>~~
 Returns a clone of the input object, minus the specified properties
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| object | <code>Object</code> | the object to clone |
+| object | <code>object</code> | the object to clone |
 | toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
 
 ***Deprecated***  
@@ -89,7 +89,7 @@ Returns true if the supplied iterator function returns true for every property i
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| object | <code>Object</code> | the object to inspect |
+| object | <code>object</code> | the object to inspect |
 | iterator | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
 **Example**  
@@ -107,7 +107,7 @@ Runs the iterator function against every key/value pair in the input object
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| object | <code>Object</code> | the object to iterate |
+| object | <code>object</code> | the object to iterate |
 | callback | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
 **Example**  
@@ -128,8 +128,8 @@ Also supports RegExp values in `query`. If the `query` property begins with `!` 
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| object | <code>Object</code> | the object to examine |
-| query | <code>Object</code> | the key/value pairs to look for |
+| object | <code>object</code> | the object to examine |
+| query | <code>object</code> | the key/value pairs to look for |
 
 **Example**  
 ```js
@@ -145,12 +145,12 @@ true
 true
 ```
 <a name="module_object-tools.without"></a>
-##o.without(object, toRemove) ⇒ <code>Object</code>
+##o.without(object, toRemove) ⇒ <code>object</code>
 returns a clone of the object minus the specified properties.
 
 | Param | Type | Description |
 | ----- | ---- | ----------- |
-| object | <code>Object</code> | the input object |
+| object | <code>object</code> | the input object |
 | toRemove | <code>string</code> \| <code>Array.&lt;string&gt;</code> | a single property, or array of properties to omit |
 
 **Example**  
