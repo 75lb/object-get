@@ -205,3 +205,6 @@ identical to `o.where(object, query)` with one exception - the found properties 
 > object
 { b: 0 }
 ```
+
+
+*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
