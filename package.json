@@ -7,13 +7,12 @@
   "main": "./lib/object-tools.js",
   "keywords": [],
   "scripts": {
-    "test": "tape test/*.js |tap-spec",
+    "test": "tape test/*.js",
     "lint": "jshint lib/*.js test/*.js; echo",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs --heading-depth 1 --example-code-gfm js --github lib/*.js > README.md; echo"
   },
   "devDependencies": {
     "jsdoc-to-markdown": "~0.5",
-    "tap-spec": "^1",
     "tape": "^3"
   },
   "dependencies": {

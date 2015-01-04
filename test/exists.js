@@ -33,3 +33,29 @@ test("not exists: regexp", function(t){
     t.deepEqual(o.exists(object, { "!result": /blue/ }), true);
     t.end();
 });
+
+test("undefined value with regexp", function(t){
+    var object = { one: "somthing" };
+    t.deepEqual(o.exists(object, { one: /.+/ }), true);
+    t.deepEqual(o.exists(object, { two: /.+/ }), false);
+    t.end();
+});
+
+test("object value with regexp", function(t){
+    var object = { one: { a: "somthing"} };
+    t.deepEqual(o.exists(object, { one: /.+/ }), false);
+    t.end();
+});
+
+test("null value with regexp", function(t){
+    var object = { one: null };
+    t.deepEqual(o.exists(object, { one: /.+/ }), false);
+    t.end();
+});
+
+test("boolean value with regexp", function(t){
+    var object = { one: true };
+    t.deepEqual(o.exists(object, { one: /true/ }), true);
+    t.deepEqual(o.exists(object, { one: /addf/ }), false);
+    t.end();
+});
