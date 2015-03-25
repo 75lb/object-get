@@ -1,5 +1,5 @@
 var test = require("tape"),
-    w = require("../");
+    o = require("../");
 
 test("defined", function(t){
     var obj = { 
@@ -8,7 +8,7 @@ test("defined", function(t){
         three: undefined,
         four: 4
     };
-    t.deepEqual(w.defined(obj), { 
+    t.deepEqual(o.defined(obj), { 
         one: 1,
         four: 4
     });

@@ -1,5 +1,5 @@
 var test = require("tape"),
-    w = require("../");
+    o = require("../");
 
 test("without (object)", function(t){
     var object = {
@@ -8,7 +8,7 @@ test("without (object)", function(t){
 		three: 3,
 		four: 4
     };
-    t.deepEqual(w.without(object, [ "two", "three" ]), {
+    t.deepEqual(o.without(object, [ "two", "three" ]), {
     	one: 1,
 		four: 4
     });
