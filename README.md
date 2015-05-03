@@ -232,4 +232,6 @@ Returns a new object containing only the selected fields
 | fields | <code>array</code> | a list of fields to return |
 
 
-*documented by [jsdoc-to-markdown](https://github.com/75lb/jsdoc-to-markdown)*.
+* * *
+
+&copy; 2015 Lloyd Brookes \<75pound@gmail.com\>. Documented by [jsdoc-to-markdown](https://github.com/jsdoc2md/jsdoc-to-markdown).

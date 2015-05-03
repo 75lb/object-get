@@ -5,14 +5,16 @@
   "description": "Useful functions for working with objects",
   "repository": "https://github.com/75lb/object-tools.git",
   "main": "./lib/object-tools.js",
+  "license": "MIT",
   "keywords": [],
   "scripts": {
     "test": "tape test/*.js",
     "lint": "jshint lib/*.js test/*.js; echo",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs -l js lib/*.js > README.md; echo"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "devDependencies": {
-    "tape": "^3"
+    "jsdoc-to-markdown": "^1.0.3",
+    "tape": "^4"
   },
   "dependencies": {
     "array-tools": "^1.1.4",
