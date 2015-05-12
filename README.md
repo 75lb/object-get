@@ -7,7 +7,7 @@
 ## object-tools
 Useful functions for working with objects
 
-**Example**  
+**Example:**  
 ```js
 var o = require("object-tools");
 ```
@@ -22,19 +22,20 @@ var o = require("object-tools");
   * [.without(object, toRemove)](#module_object-tools.without) ⇒ <code>object</code>
   * [.where(object, query)](#module_object-tools.where) ⇒ <code>object</code>
   * [.extract(object, query)](#module_object-tools.extract) ⇒ <code>object</code>
-  * [.select(object, fields)](#module_object-tools.select)
+  * [.select(object, fields)](#module_object-tools.select) ⇒ <code>object</code>
+  * [.get(object, expression)](#module_object-tools.get) ⇒ <code>\*</code>
 
 <a name="module_object-tools.extend"></a>
 ### o.extend(...object) ⇒ <code>object</code>
 Merge a list of objects, left to right, into one.
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | ...object | <code>object</code> | a sequence of object instances to be extended |
 
-**Example**  
+**Example:**  
 ```js
 > o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
 { one: 'one',
@@ -46,13 +47,13 @@ Merge a list of objects, left to right, into one.
 ### o.clone(input) ⇒ <code>object</code> &#124; <code>array</code>
 Clones an object or array
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | input | <code>object</code> &#124; <code>array</code> | the input to clone |
 
-**Example**  
+**Example:**  
 ```js
 > date = new Date()
 Fri May 09 2014 13:54:34 GMT+0200 (CEST)
@@ -71,18 +72,18 @@ false
 ```
 <a name="module_object-tools.omit"></a>
 ### ~~o.omit(object, toOmit) ⇒ <code>object</code>~~
-***Deprecated***
+***Deprecated:***
 
 Returns a clone of the input object, minus the specified properties
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the object to clone |
 | toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
 
-**Example**  
+**Example:**  
 ```js
 > o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
 { one: 1, three: 3 }
@@ -91,14 +92,14 @@ Returns a clone of the input object, minus the specified properties
 ### o.every(object, iterator) ⇒ <code>boolean</code>
 Returns true if the supplied iterator function returns true for every property in the object
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the object to inspect |
 | iterator | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
-**Example**  
+**Example:**  
 ```js
 > function aboveTen(input){ return input > 10; }
 undefined
@@ -111,14 +112,14 @@ false
 ### o.each(object, callback)
 Runs the iterator function against every key/value pair in the input object
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the object to iterate |
 | callback | <code>function</code> | the iterator function to run against each key/value pair, the args are `(value, key)`. |
 
-**Example**  
+**Example:**  
 ```js
 > var total = 0;
 undefined
@@ -134,14 +135,14 @@ undefined
 returns true if the key/value pairs in `query` also exist identically in `object`.
 Also supports RegExp values in `query`. If the `query` property begins with `!` then test is negated.
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the object to examine |
 | query | <code>object</code> | the key/value pairs to look for |
 
-**Example**  
+**Example:**  
 ```js
 > o.exists({ a: 1, b: 2}, {a: 0})
 false
@@ -156,16 +157,16 @@ true
 ```
 <a name="module_object-tools.without"></a>
 ### o.without(object, toRemove) ⇒ <code>object</code>
-returns a clone of the object minus the specified properties.
+Returns a clone of the object minus the specified properties. See also [select](#module_object-tools.select).
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the input object |
 | toRemove | <code>string</code> &#124; <code>Array.&lt;string&gt;</code> | a single property, or array of properties to omit |
 
-**Example**  
+**Example:**  
 ```js
 > o.without({ a: 1, b: 2, c: 3}, "b")
 { a: 1, c: 3 }
@@ -176,15 +177,15 @@ returns a clone of the object minus the specified properties.
 ### o.where(object, query) ⇒ <code>object</code>
 Returns a new object containing the key/value pairs which satisfy the query
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
-**Since**: 1.2.0  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
+**Since:** 1.2.0  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | The input object |
 | query | <code>Array.&lt;string&gt;</code> &#124; <code>function</code> | Either an array of property names, or a function. The function is called with `(value, key)` and must return `true` to be included in the output. |
 
-**Example**  
+**Example:**  
 ```js
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
@@ -201,15 +202,15 @@ Returns a new object containing the key/value pairs which satisfy the query
 ### o.extract(object, query) ⇒ <code>object</code>
 identical to `o.where(object, query)` with one exception - the found properties are removed from the input `object`
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
-**Since**: 1.2.0  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
+**Since:** 1.2.0  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | The input object |
 | query | <code>Array.&lt;string&gt;</code> &#124; <code>function</code> | Either an array of property names, or a function. The function is called with `(value, key)` and must return `true` to be included in the output. |
 
-**Example**  
+**Example:**  
 ```js
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
@@ -221,15 +222,26 @@ identical to `o.where(object, query)` with one exception - the found properties 
 { b: 0 }
 ```
 <a name="module_object-tools.select"></a>
-### o.select(object, fields)
-Returns a new object containing only the selected fields
+### o.select(object, fields) ⇒ <code>object</code>
+Returns a new object containing only the selected fields. See also [without](#module_object-tools.without).
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the input object |
 | fields | <code>array</code> | a list of fields to return |
+
+<a name="module_object-tools.get"></a>
+### o.get(object, expression) ⇒ <code>\*</code>
+Returns the value at the given property.
+
+**Kind:** static method of <code>[object-tools](#module_object-tools)</code>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| object | <code>object</code> | the input object |
+| expression | <code>string</code> | the property accessor expression |
 
 
 * * *
