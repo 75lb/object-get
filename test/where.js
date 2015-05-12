@@ -1,5 +1,5 @@
-var test = require("tape"),
-    o = require("../");
+var test = require("tape");
+var o = require("../");
 
 test(".where(object, function)", function(t){
     var object = { a: 1, b: 0, c: 2 };

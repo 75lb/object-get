@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "array-tools": "^1.1.4",
-    "typical": "^1.0.0"
+    "typical": "^2"
   }
 }
