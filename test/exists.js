@@ -201,3 +201,13 @@ test(".exists contains", function(t){
     t.strictEqual(o.exists({ numbers: { one: 1 } }, { numbers: { one: 1 } }), true);
     t.end();
 });
+
+test(".exists test function", function(t){
+    var fixture = {
+        number: 5
+    };
+    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 4; }}), false, "< 4");
+    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 10; }}), true, "< 10");
+    t.strictEqual(o.exists(fixture, { "!number": function(n){ return n < 10; }}), false, "< 10");
+    t.end();
+});
