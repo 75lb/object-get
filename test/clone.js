@@ -10,3 +10,10 @@ test(".clone()", function(t){
     t.deepEqual(o.clone([ 1, 2, 3 ]), [ 1, 2, 3 ]);
     t.end();
 });
+
+test(".clone(primative)", function(t){
+    t.deepEqual(o.clone(1), 1);
+    t.deepEqual(o.clone(true), true);
+    t.deepEqual(o.clone("1"), "1");
+    t.end();
+});
