@@ -15,5 +15,6 @@ test(".clone(primative)", function(t){
     t.deepEqual(o.clone(1), 1);
     t.deepEqual(o.clone(true), true);
     t.deepEqual(o.clone("1"), "1");
+    t.deepEqual(o.clone(null), null);
     t.end();
 });

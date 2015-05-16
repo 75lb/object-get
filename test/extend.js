@@ -82,3 +82,19 @@ test(".extend(), deep", function(t){
     t.deepEqual(output, expected);
     t.end();
 });
+
+test(".extend with null values", function(t){
+    var input = {};
+    var extendWith = { src: null };
+    var expected = { src: null };
+    t.deepEqual(o.extend(input, extendWith), expected);
+    t.end();
+});
+
+test(".extend with undefined values", function(t){
+    var input = {};
+    var extendWith = { src: undefined };
+    var expected = { src: undefined };
+    t.deepEqual(o.extend(input, extendWith), expected);
+    t.end();
+});
