@@ -110,3 +110,11 @@ test(".extend with circular references", function(t){
     });
     t.end();
 });
+
+test(".extend does not clone", function(t){
+    var arr = [1,2,3];
+    var one = { arr: arr };
+    var result = o.extend({}, one);
+    t.ok(result.arr === arr);
+    t.end();
+});
