@@ -211,3 +211,16 @@ test(".exists test function", function(t){
     t.strictEqual(o.exists(fixture, { "!number": function(n){ return n < 10; }}), false, "< 10");
     t.end();
 });
+
+test(".exists - querying a class instance", function(t){
+    function Test(){ this.one = 1; }
+    var fixture = {
+        test: new Test()
+    };
+    var query = { test: {
+        one: 1
+    }};
+    var result = o.exists(fixture, query);
+    t.strictEqual(result, true);
+    t.end();
+});
