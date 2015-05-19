@@ -118,3 +118,13 @@ test(".extend does not clone", function(t){
     t.ok(result.arr === arr);
     t.end();
 });
+
+test(".extend with no input", function(t){
+    t.deepEqual(o.extend(), {});
+    t.end();
+});
+
+test(".extend with one input", function(t){
+    t.deepEqual(o.extend({ one: 1 }), { one: 1 });
+    t.end();
+});
