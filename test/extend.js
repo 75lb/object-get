@@ -128,3 +128,13 @@ test(".extend with one input", function(t){
     t.deepEqual(o.extend({ one: 1 }), { one: 1 });
     t.end();
 });
+
+test(".extend with one input and undefined", function(t){
+    t.deepEqual(o.extend({ one: 1 }, undefined), { one: 1 });
+    t.end();
+});
+
+test(".extend with one input and null", function(t){
+    t.deepEqual(o.extend({ one: 1 }, undefined), { one: 1 });
+    t.end();
+});
