@@ -98,3 +98,15 @@ test(".extend with undefined values", function(t){
     t.deepEqual(o.extend(input, extendWith), expected);
     t.end();
 });
+
+test(".extend with circular references", function(t){
+    var one = { one: 1 };
+    var obj = {
+        one: one
+    };
+    one.one = obj;
+    t.doesNotThrow(function(){
+        var result = o.extend({}, obj);
+    });
+    t.end();
+});
