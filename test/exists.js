@@ -1,62 +1,72 @@
 var test = require("tape");
 var o = require("../");
 
-test("exists: primative", function(t){
-    var object = { result: "clive", hater: true };
-    t.deepEqual(o.exists(object, { result: "clive" }), true);
-    t.deepEqual(o.exists(object, { hater: true }), true);
-    t.deepEqual(o.exists(object, { result: "clive", hater: true }), true);
-    t.deepEqual(o.exists(object, { ibe: true }), false);
+function TestClass(){
+    this.one = 1;
+}
+
+var fixture = {
+    result: "clive",
+    hater: true,
+    colour: "red-ish",
+    deep: {
+        a: "something"
+    },
+    nullVal: null,
+    boolTrue: true,
+    number: 5,
+    testClass: new TestClass()
+};
+
+test(".exists(obj, { property: primative })", function(t){
+    t.strictEqual(o.exists(fixture, { result: "clive" }), true);
+    t.strictEqual(o.exists(fixture, { hater: true }), true);
+    t.strictEqual(o.exists(fixture, { result: "clive", hater: true }), true);
+    t.strictEqual(o.exists(fixture, { ibe: true }), false);
+    t.strictEqual(o.exists(fixture, { testClass: { one: 1 } }), true, "querying a class instance");
     t.end();
 });
 
-test("not exists: primative", function(t){
-    var object = { result: "clive", hater: true };
-    t.deepEqual(o.exists(object, { "!result": "clive" }), false);
-    t.deepEqual(o.exists(object, { "!result": "ian" }), true);
-    t.deepEqual(o.exists(object, { "!result": "ian", "!hater": false }), true);
+test(".exists(obj, { !property: primative })", function(t){
+    t.deepEqual(o.exists(fixture, { "!result": "clive" }), false);
+    t.deepEqual(o.exists(fixture, { "!result": "ian" }), true);
+    t.deepEqual(o.exists(fixture, { "!result": "ian", "!hater": false }), true);
     t.end();
 });
 
-test("exists: regexp", function(t){
-    var object = { result: "red-ish" };
-    t.deepEqual(o.exists(object, { result: /red/ }), true);
-    t.deepEqual(o.exists(object, { result: /black/ }), false);
-    t.deepEqual(o.exists(object, { result: /blue/ }), false);
+test(".exists(obj, { property: /regex/ })", function(t){
+    t.deepEqual(o.exists(fixture, { colour: /red/ }), true);
+    t.deepEqual(o.exists(fixture, { colour: /black/ }), false);
+    t.deepEqual(o.exists(fixture, { colour: /RED/i }), true);
+    t.deepEqual(o.exists(fixture, { colour: /.+/ }), true);
+    t.deepEqual(o.exists(fixture, { undefinedProperty: /.+/ }), false, "testing undefined val");
+    t.deepEqual(o.exists(fixture, { deep: /.+/ }), false, "testing an object val");
+    t.deepEqual(o.exists(fixture, { nullVal: /.+/ }), false, "testing a null val");
+    t.deepEqual(o.exists(fixture, { boolTrue: /true/ }), true, "testing a boolean val");
+    t.deepEqual(o.exists(fixture, { boolTrue: /addf/ }), false, "testing a boolean val");
     t.end();
 });
 
-test("not exists: regexp", function(t){
-    var object = { result: "red-ish" };
-    t.deepEqual(o.exists(object, { "!result": /red/ }), false);
-    t.deepEqual(o.exists(object, { "!result": /black/ }), true);
-    t.deepEqual(o.exists(object, { "!result": /blue/ }), true);
+test(".exists(obj, { !property: /regex/ })", function(t){
+    t.deepEqual(o.exists(fixture, { "!colour": /red/ }), false);
+    t.deepEqual(o.exists(fixture, { "!colour": /black/ }), true);
+    t.deepEqual(o.exists(fixture, { "!colour": /blue/ }), true);
     t.end();
 });
 
-test("undefined value with regexp", function(t){
-    var object = { one: "somthing" };
-    t.deepEqual(o.exists(object, { one: /.+/ }), true);
-    t.deepEqual(o.exists(object, { two: /.+/ }), false);
+test(".exists(obj, { property: function })", function(t){
+    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 4; }}), false, "< 4");
+    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 10; }}), true, "< 10");
     t.end();
 });
 
-test("object value with regexp", function(t){
-    var object = { one: { a: "somthing"} };
-    t.deepEqual(o.exists(object, { one: /.+/ }), false);
+test(".exists(obj, { !property: function })", function(t){
+    t.strictEqual(o.exists(fixture, { "!number": function(n){ return n < 10; }}), false, "< 10");
     t.end();
 });
 
-test("null value with regexp", function(t){
-    var object = { one: null };
-    t.deepEqual(o.exists(object, { one: /.+/ }), false);
-    t.end();
-});
-
-test("boolean value with regexp", function(t){
-    var object = { one: true };
-    t.deepEqual(o.exists(object, { one: /true/ }), true);
-    t.deepEqual(o.exists(object, { one: /addf/ }), false);
+test(".exists(obj, { property: object })", function(t){
+    t.strictEqual(o.exists(fixture, { testClass: { one: 1 } }), true, "querying a class instance");
     t.end();
 });
 
@@ -195,32 +205,23 @@ test("object deep exists, summary", function(t){
 });
 
 test(".exists contains", function(t){
-    t.strictEqual(o.exists({ numbers: [ { one: 1 }, { one: "eins" } ] }, { numbers: { one: 1 } }), false);
-    t.strictEqual(o.exists({ numbers: [ { one: 1 }, { one: "eins" } ] }, { "+numbers": { one: 1 } }), true);
-    t.strictEqual(o.exists({ numbers: { one: 1 } }, { "+numbers": { one: 1 } }), true);
-    t.strictEqual(o.exists({ numbers: { one: 1 } }, { numbers: { one: 1 } }), true);
-    t.end();
-});
-
-test(".exists test function", function(t){
-    var fixture = {
-        number: 5
+    var arr1 = {
+        numbers: [
+            { one: 1 },
+            { one: "eins" }
+        ]
     };
-    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 4; }}), false, "< 4");
-    t.strictEqual(o.exists(fixture, { number: function(n){ return n < 10; }}), true, "< 10");
-    t.strictEqual(o.exists(fixture, { "!number": function(n){ return n < 10; }}), false, "< 10");
-    t.end();
-});
-
-test(".exists - querying a class instance", function(t){
-    function Test(){ this.one = 1; }
-    var fixture = {
-        test: new Test()
+    var arr2 = {
+        numbers: { one: 1 }
     };
-    var query = { test: {
-        one: 1
-    }};
-    var result = o.exists(fixture, query);
-    t.strictEqual(result, true);
+    var arr3 = {
+        numbers: [ 1, 2 ]
+    };
+    t.strictEqual(o.exists(arr1, { numbers: { one: 1 } }), false);
+    t.strictEqual(o.exists(arr1, { "+numbers": { one: 1 } }), true);
+    t.strictEqual(o.exists(arr2, { "+numbers": { one: 1 } }), true);
+    t.strictEqual(o.exists(arr2, { numbers: { one: 1 } }), true);
+    t.strictEqual(o.exists(arr3, { numbers: 1 }), false);
+    // t.strictEqual(o.exists(arr3, { "+numbers": 1 }), false);
     t.end();
 });
