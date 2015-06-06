@@ -5,6 +5,8 @@ function TestClass(){
     this.one = 1;
 }
 
+var testClass = new TestClass();
+
 var fixture = {
     result: "clive",
     hater: true,
@@ -15,7 +17,12 @@ var fixture = {
     nullVal: null,
     boolTrue: true,
     number: 5,
-    testClass: new TestClass()
+    testClass: testClass,
+    arr: [ 1, 2, 3 ],
+    arrObjects: [ 
+        { number: 1 }, 
+        { number: 2 }
+    ]
 };
 
 test(".exists(obj, { property: primative })", function(t){
@@ -23,7 +30,6 @@ test(".exists(obj, { property: primative })", function(t){
     t.strictEqual(o.exists(fixture, { hater: true }), true);
     t.strictEqual(o.exists(fixture, { result: "clive", hater: true }), true);
     t.strictEqual(o.exists(fixture, { ibe: true }), false);
-    t.strictEqual(o.exists(fixture, { testClass: { one: 1 } }), true, "querying a class instance");
     t.end();
 });
 
@@ -31,6 +37,13 @@ test(".exists(obj, { !property: primative })", function(t){
     t.deepEqual(o.exists(fixture, { "!result": "clive" }), false);
     t.deepEqual(o.exists(fixture, { "!result": "ian" }), true);
     t.deepEqual(o.exists(fixture, { "!result": "ian", "!hater": false }), true);
+    t.end();
+});
+
+test(".exists(obj, { property: array })", function(t){
+    t.deepEqual(o.exists(fixture, { arr: [ 1, 2, 3 ] }), true);
+    t.deepEqual(o.exists(fixture, { colour: [ 1, 2, 3 ] }), false, "querying a string with array");
+    t.deepEqual(o.exists(fixture, { undefinedProperty: [ 1, 2, 3 ] }), false, "querying undefined property");
     t.end();
 });
 
@@ -66,7 +79,23 @@ test(".exists(obj, { !property: function })", function(t){
 });
 
 test(".exists(obj, { property: object })", function(t){
-    t.strictEqual(o.exists(fixture, { testClass: { one: 1 } }), true, "querying a class instance");
+    t.strictEqual(o.exists(fixture, { testClass: { one: 1 } }), true, "querying a plain object");
+    t.strictEqual(o.exists(fixture, { testClass: testClass }), true, "querying an object instance");
+    t.end();
+});
+
+
+/* `+` signifies property value may be an array.. if array, does it a.contain() this value */
+test.skip(".exists(obj, { +property: value })", function(t){
+    t.strictEqual(o.exists(fixture, { arr: 1 }), false);
+    t.strictEqual(o.exists(fixture, { "+arr": 1 }), true);
+    t.end();
+});
+
+/* `+` signifies property value may be an array.. if array, does it a.exists() this query */
+test(".exists(obj, { +property: query })", function(t){
+    t.strictEqual(o.exists(fixture, { arrObjects: { number: 1 } }), false);
+    t.strictEqual(o.exists(fixture, { "+arrObjects": { number: 1 } }), true);
     t.end();
 });
 
@@ -201,27 +230,5 @@ test("object deep exists, summary", function(t){
     t.strictEqual(o.exists(obj2, query), true, "true obj2");
     t.strictEqual(o.exists(obj3, query), false, "false in obj3");
     t.strictEqual(o.exists(obj4, query), true, "false in obj4");
-    t.end();
-});
-
-test(".exists contains", function(t){
-    var arr1 = {
-        numbers: [
-            { one: 1 },
-            { one: "eins" }
-        ]
-    };
-    var arr2 = {
-        numbers: { one: 1 }
-    };
-    var arr3 = {
-        numbers: [ 1, 2 ]
-    };
-    t.strictEqual(o.exists(arr1, { numbers: { one: 1 } }), false);
-    t.strictEqual(o.exists(arr1, { "+numbers": { one: 1 } }), true);
-    t.strictEqual(o.exists(arr2, { "+numbers": { one: 1 } }), true);
-    t.strictEqual(o.exists(arr2, { numbers: { one: 1 } }), true);
-    t.strictEqual(o.exists(arr3, { numbers: 1 }), false);
-    // t.strictEqual(o.exists(arr3, { "+numbers": 1 }), false);
     t.end();
 });
