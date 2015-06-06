@@ -10,10 +10,12 @@
   "scripts": {
     "test": "tape test/*.js",
     "lint": "jshint lib/*.js test/*.js; echo",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo",
+    "cover": "istanbul cover ./node_modules/.bin/tape test/*.js && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage; echo"
   },
   "devDependencies": {
     "jsdoc-to-markdown": "^1.0.3",
+    "coveralls": "^2.11.2",
     "tape": "^4"
   },
   "dependencies": {
