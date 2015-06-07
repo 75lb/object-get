@@ -15,7 +15,6 @@ var o = require("object-tools");
 * [object-tools](#module_object-tools)
   * [.extend(...object)](#module_object-tools.extend) ⇒ <code>object</code>
   * [.clone(input)](#module_object-tools.clone) ⇒ <code>object</code> &#124; <code>array</code>
-  * ~~[.omit(object, toOmit)](#module_object-tools.omit) ⇒ <code>object</code>~~
   * [.every(object, iterator)](#module_object-tools.every) ⇒ <code>boolean</code>
   * [.each(object, callback)](#module_object-tools.each)
   * [.exists(object, query)](#module_object-tools.exists) ⇒ <code>boolean</code>
@@ -27,7 +26,7 @@ var o = require("object-tools");
 
 <a name="module_object-tools.extend"></a>
 ### o.extend(...object) ⇒ <code>object</code>
-Merge a list of objects, left to right, into one.
+Merge a list of objects, left to right, into one - to a maximum depth of 10.
 
 **Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
 
@@ -70,24 +69,6 @@ Fri May 09 2014 13:54:34 GMT+0200 (CEST)
 > array === newArray
 false
 ```
-<a name="module_object-tools.omit"></a>
-### ~~o.omit(object, toOmit) ⇒ <code>object</code>~~
-***Deprecated***
-
-Returns a clone of the input object, minus the specified properties
-
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| object | <code>object</code> | the object to clone |
-| toOmit | <code>Array.&lt;string&gt;</code> | an array of property names to omit from the clone |
-
-**Example**  
-```js
-> o.omit({ one: 1, two: 2, three: 3, four: 4 }, [ "two", "four" ]);
-{ one: 1, three: 3 }
-```
 <a name="module_object-tools.every"></a>
 ### o.every(object, iterator) ⇒ <code>boolean</code>
 Returns true if the supplied iterator function returns true for every property in the object
@@ -102,7 +83,6 @@ Returns true if the supplied iterator function returns true for every property i
 **Example**  
 ```js
 > function aboveTen(input){ return input > 10; }
-undefined
 > o.every({ eggs: 12, carrots: 30, peas: 100 }, aboveTen)
 true
 > o.every({ eggs: 6, carrots: 30, peas: 100 }, aboveTen)
@@ -122,11 +102,8 @@ Runs the iterator function against every key/value pair in the input object
 **Example**  
 ```js
 > var total = 0;
-undefined
 > function addToTotal(n){ total += n; }
-undefined
 > o.each({ eggs: 3, celery: 2, carrots: 1 }, addToTotal)
-undefined
 > total
 6
 ```
