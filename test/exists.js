@@ -41,11 +41,17 @@ test(".exists(obj, { !property: primative })", function(t){
 });
 
 test(".exists(obj, { property: primative[] })", function(t){
-    t.deepEqual(o.exists(fixture, { arr: [ 1, 2, 3 ] }), true);
-    t.deepEqual(o.exists(fixture, { colour: [ 1, 2, 3 ] }), false, "querying a string with array");
-    t.deepEqual(o.exists(fixture, { undefinedProperty: [ 1, 2, 3 ] }), false, "querying undefined property");
+    t.strictEqual(o.exists(fixture, { arr: [ 1, 2, 3 ] }), true);
+    t.strictEqual(o.exists(fixture, { colour: [ 1, 2, 3 ] }), false, "querying a string with array");
+    t.strictEqual(o.exists(fixture, { undefinedProperty: [ 1, 2, 3 ] }), false, "querying undefined property");
     t.end();
 });
+
+test(".exists(obj, { property: undefined, property: regex })", function(t){
+    t.strictEqual(o.exists(fixture.deep, { undefinedProperty: undefined, a: /.+/ }), true);
+    t.end();
+});
+
 
 test(".exists(obj, { property: /regex/ })", function(t){
     t.deepEqual(o.exists(fixture, { colour: /red/ }), true);
