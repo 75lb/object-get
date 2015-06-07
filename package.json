@@ -14,8 +14,9 @@
     "cover": "istanbul cover ./node_modules/.bin/tape test/*.js && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage; echo"
   },
   "devDependencies": {
-    "jsdoc-to-markdown": "^1.0.3",
     "coveralls": "^2.11.2",
+    "istanbul": "^0.3.14",
+    "jsdoc-to-markdown": "^1.0.3",
     "tape": "^4"
   },
   "dependencies": {

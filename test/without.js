@@ -1,7 +1,7 @@
-var test = require("tape"),
-    o = require("../");
+var test = require("tape");
+var o = require("../");
 
-test("without (object)", function(t){
+test(".without(object, arrayOfProps)", function(t){
     var object = {
     	one: 1,
 		two: 2,

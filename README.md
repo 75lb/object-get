@@ -2,6 +2,7 @@
 [![npm module downloads per month](http://img.shields.io/npm/dm/object-tools.svg)](https://www.npmjs.org/package/object-tools)
 [![Build Status](https://travis-ci.org/75lb/object-tools.svg?branch=master)](https://travis-ci.org/75lb/object-tools)
 [![Dependency Status](https://david-dm.org/75lb/object-tools.svg)](https://david-dm.org/75lb/object-tools)
+[![Coverage Status](https://coveralls.io/repos/75lb/object-tools/badge.svg?branch=master)](https://coveralls.io/r/75lb/object-tools?branch=master)
 
 <a name="module_object-tools"></a>
 ## object-tools
