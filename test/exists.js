@@ -12,15 +12,19 @@ var fixture = {
     hater: true,
     colour: "red-ish",
     deep: {
-        a: "something"
+        name: "Zhana",
+        favourite: {
+            colour: [ "white", "red" ]
+        },
+        arr: [ 1, 2, 3 ]
     },
     nullVal: null,
     boolTrue: true,
     number: 5,
     testClass: testClass,
     arr: [ 1, 2, 3 ],
-    arrObjects: [ 
-        { number: 1 }, 
+    arrObjects: [
+        { number: 1 },
         { number: 2 }
     ]
 };
@@ -34,42 +38,50 @@ test(".exists(obj, { property: primative })", function(t){
 });
 
 test(".exists(obj, { !property: primative })", function(t){
-    t.deepEqual(o.exists(fixture, { "!result": "clive" }), false);
-    t.deepEqual(o.exists(fixture, { "!result": "ian" }), true);
-    t.deepEqual(o.exists(fixture, { "!result": "ian", "!hater": false }), true);
+    t.strictEqual(o.exists(fixture, { "!result": "clive" }), false);
+    t.strictEqual(o.exists(fixture, { "!result": "ian" }), true);
+    t.strictEqual(o.exists(fixture, { "!result": "ian", "!hater": false }), true);
     t.end();
 });
 
 test(".exists(obj, { property: primative[] })", function(t){
     t.strictEqual(o.exists(fixture, { arr: [ 1, 2, 3 ] }), true);
+    t.strictEqual(o.exists(fixture, { arr: [ /1/ ] }), true);
+    t.strictEqual(o.exists(fixture, { arr: [ /4/ ] }), false);
     t.strictEqual(o.exists(fixture, { colour: [ 1, 2, 3 ] }), false, "querying a string with array");
     t.strictEqual(o.exists(fixture, { undefinedProperty: [ 1, 2, 3 ] }), false, "querying undefined property");
     t.end();
 });
 
-test(".exists(obj, { property: undefined, property: regex })", function(t){
-    t.strictEqual(o.exists(fixture.deep, { undefinedProperty: undefined, a: /.+/ }), true);
+test(".exists(obj, { property: { property: primative[] } })", function(t){
+    t.strictEqual(o.exists(fixture, { deep: { arr: [ 1, 2 ] } }), true);
+    t.strictEqual(o.exists(fixture, { deep: { arr: [ 3, 4 ] } }), false);
+    t.strictEqual(o.exists(fixture, { deep: { favourite: { colour: [ "white", "red" ] } } }), true);
     t.end();
 });
 
+test(".exists(obj, { property: undefined, property: regex })", function(t){
+    t.strictEqual(o.exists(fixture.deep, { undefinedProperty: undefined, name: /.+/ }), true);
+    t.end();
+});
 
 test(".exists(obj, { property: /regex/ })", function(t){
-    t.deepEqual(o.exists(fixture, { colour: /red/ }), true);
-    t.deepEqual(o.exists(fixture, { colour: /black/ }), false);
-    t.deepEqual(o.exists(fixture, { colour: /RED/i }), true);
-    t.deepEqual(o.exists(fixture, { colour: /.+/ }), true);
-    t.deepEqual(o.exists(fixture, { undefinedProperty: /.+/ }), false, "testing undefined val");
-    t.deepEqual(o.exists(fixture, { deep: /.+/ }), false, "testing an object val");
-    t.deepEqual(o.exists(fixture, { nullVal: /.+/ }), false, "testing a null val");
-    t.deepEqual(o.exists(fixture, { boolTrue: /true/ }), true, "testing a boolean val");
-    t.deepEqual(o.exists(fixture, { boolTrue: /addf/ }), false, "testing a boolean val");
+    t.strictEqual(o.exists(fixture, { colour: /red/ }), true);
+    t.strictEqual(o.exists(fixture, { colour: /black/ }), false);
+    t.strictEqual(o.exists(fixture, { colour: /RED/i }), true);
+    t.strictEqual(o.exists(fixture, { colour: /.+/ }), true);
+    t.strictEqual(o.exists(fixture, { undefinedProperty: /.+/ }), false, "testing undefined val");
+    t.strictEqual(o.exists(fixture, { deep: /.+/ }), false, "testing an object val");
+    t.strictEqual(o.exists(fixture, { nullVal: /.+/ }), false, "testing a null val");
+    t.strictEqual(o.exists(fixture, { boolTrue: /true/ }), true, "testing a boolean val");
+    t.strictEqual(o.exists(fixture, { boolTrue: /addf/ }), false, "testing a boolean val");
     t.end();
 });
 
 test(".exists(obj, { !property: /regex/ })", function(t){
-    t.deepEqual(o.exists(fixture, { "!colour": /red/ }), false);
-    t.deepEqual(o.exists(fixture, { "!colour": /black/ }), true);
-    t.deepEqual(o.exists(fixture, { "!colour": /blue/ }), true);
+    t.strictEqual(o.exists(fixture, { "!colour": /red/ }), false);
+    t.strictEqual(o.exists(fixture, { "!colour": /black/ }), true);
+    t.strictEqual(o.exists(fixture, { "!colour": /blue/ }), true);
     t.end();
 });
 
@@ -91,14 +103,22 @@ test(".exists(obj, { property: object })", function(t){
 });
 
 
-/* `+` signifies property value may be an array.. if array, does it a.contain() this value */
 test(".exists(obj, { +property: primitive })", function(t){
     t.strictEqual(o.exists(fixture, { arr: 1 }), false);
     t.strictEqual(o.exists(fixture, { "+arr": 1 }), true);
     t.end();
 });
 
-/* `+` signifies property value may be an array.. if array, does it a.exists() this query */
+test(".exists(obj, { property. { +property: query } })", function(t){
+    t.strictEqual(o.exists(fixture, { deep: { favourite: { "+colour": "red" } } }), true);
+    t.strictEqual(o.exists(fixture, { deep: { favourite: { "+colour": /red/ } } }), true);
+    t.strictEqual(o.exists(fixture, { deep: { favourite: { "+colour": function(c){ 
+        return c === "red"; 
+    } } } }), true);
+    t.strictEqual(o.exists(fixture, { deep: { favourite: { "+colour": /green/ } } }), false);
+    t.end();
+});
+
 test(".exists(obj, { +property: query })", function(t){
     t.strictEqual(o.exists(fixture, { arrObjects: { number: 1 } }), false);
     t.strictEqual(o.exists(fixture, { "+arrObjects": { number: 1 } }), true);
