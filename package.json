@@ -20,7 +20,7 @@
     "tape": "^4"
   },
   "dependencies": {
-    "array-tools": "^1.8.4",
+    "array-tools": "^2",
     "typical": "^2.2"
   }
 }
