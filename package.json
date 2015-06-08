@@ -5,6 +5,7 @@
   "description": "Useful functions for working with objects",
   "repository": "https://github.com/75lb/object-tools.git",
   "main": "./lib/object-tools.js",
+  "bin": "bin/cli.js",
   "license": "MIT",
   "keywords": [],
   "scripts": {
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "array-tools": "^2.0.0-0",
+    "transform-tools": "0.0.2",
     "typical": "^2.2"
   }
 }
