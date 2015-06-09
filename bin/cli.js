@@ -9,6 +9,7 @@ var value = process.argv.shift();
 
 process.stdin
     .pipe(tr.collectJson({ transform: function(json){
-        return o[method](json, value);
+        var result = o[method](json, value);
+        return JSON.stringify(result, null, "  ") + "\n";
     }}))
     .pipe(process.stdout);
