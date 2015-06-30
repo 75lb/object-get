@@ -55,7 +55,7 @@ test(".exists(obj, { property: primative[] })", function(t){
 
 test(".exists(obj, { property: { property: primative[] } })", function(t){
     t.strictEqual(o.exists(fixture, { deep: { arr: [ 1, 2 ] } }), true);
-    t.strictEqual(o.exists(fixture, { deep: { arr: [ 3, 4 ] } }), false);
+    t.strictEqual(o.exists(fixture, { deep: { arr: [ 3, 4 ] } }), true);
     t.strictEqual(o.exists(fixture, { deep: { favourite: { colour: [ "white", "red" ] } } }), true);
     t.end();
 });

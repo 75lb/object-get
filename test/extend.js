@@ -91,14 +91,6 @@ test(".extend with null values", function(t){
     t.end();
 });
 
-test(".extend with undefined values", function(t){
-    var input = {};
-    var extendWith = { src: undefined };
-    var expected = { src: undefined };
-    t.deepEqual(o.extend(input, extendWith), expected);
-    t.end();
-});
-
 test(".extend with circular references", function(t){
     var one = { one: 1 };
     var obj = {
@@ -136,5 +128,13 @@ test(".extend with one input and undefined", function(t){
 
 test(".extend with one input and null", function(t){
     t.deepEqual(o.extend({ one: 1 }, undefined), { one: 1 });
+    t.end();
+});
+
+test(".extend() doesn't clobber with undefined", function(t){
+    t.deepEqual(
+        o.extend({ one: 1 }, { one: undefined }),
+        { one: 1 }
+    );
     t.end();
 });
