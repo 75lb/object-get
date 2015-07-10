@@ -21,8 +21,9 @@
     "tape": "^4"
   },
   "dependencies": {
-    "array-tools": "^2.0.0-0",
-    "transform-tools": "0.0.2",
+    "array-tools": "^2.0.0",
+    "collect-json": "~0.1.1",
+    "test-value": "~0.1.0",
     "typical": "^2.2"
   }
 }
