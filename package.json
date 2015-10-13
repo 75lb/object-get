@@ -3,23 +3,13 @@
   "version": "1.0.0",
   "description": "Gets properties from objects with a path expression.",
   "main": "lib/object-get.js",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
-    "test": "jshint lib test && tape test/*.js",
+    "test": "tape test/*.js",
     "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/75lb/object-get.git"
-  },
+  "repository": "https://github.com/75lb/object-get",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/75lb/object-get/issues"
-  },
-  "homepage": "https://github.com/75lb/object-get#readme",
   "devDependencies": {
     "jsdoc-to-markdown": "^1.2.0",
     "tape": "^4.2.1"
