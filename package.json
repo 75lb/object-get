@@ -1,29 +1,27 @@
 {
-  "name": "object-tools",
-  "author": "Lloyd Brookes <75pound@gmail.com>",
-  "version": "2.0.4",
-  "description": "Useful functions for working with objects",
-  "repository": "https://github.com/75lb/object-tools.git",
-  "main": "./lib/object-tools.js",
-  "bin": "bin/cli.js",
-  "license": "MIT",
-  "keywords": [],
+  "name": "object-get",
+  "version": "1.0.0",
+  "description": "Gets properties from objects with a path expression.",
+  "main": "lib/object-get.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
-    "test": "tape test/*.js",
-    "lint": "jshint lib/*.js test/*.js; echo",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo",
-    "cover": "istanbul cover ./node_modules/.bin/tape test/*.js && cat coverage/lcov.info | ./node_modules/.bin/coveralls && rm -rf coverage; echo"
+    "test": "jshint lib test && tape test/*.js",
+    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garlicnation/object-get.git"
+  },
+  "author": "Lloyd Brookes <75pound@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/garlicnation/object-get/issues"
+  },
+  "homepage": "https://github.com/garlicnation/object-get#readme",
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.14",
-    "jsdoc-to-markdown": "^1.0.3",
-    "tape": "^4"
-  },
-  "dependencies": {
-    "array-tools": "^2.0.0",
-    "collect-json": "^1",
-    "test-value": "^1",
-    "typical": "^2.2"
+    "jsdoc-to-markdown": "^1.2.0",
+    "tape": "^4.2.1"
   }
 }

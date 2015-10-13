@@ -1,4 +1,1 @@
-tmp
-out
-.coveralls.yml
-.zuulrc
+node_modules
