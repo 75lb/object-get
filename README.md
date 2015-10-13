@@ -1,19 +1,19 @@
 [![view on npm](http://img.shields.io/npm/v/object-get.svg)](https://www.npmjs.org/package/object-get)
 
-<a name="module_object-tools"></a>
-## object-tools
+<a name="module_object-get"></a>
+## object-get
 Gets a value for a property path.
 
-**Example**
+**Example**  
 ```js
 var g = require("object-get")
 ```
-<a name="module_object-tools.get"></a>
+<a name="module_object-get.get"></a>
 ### o.get(object, expression) ⇒ <code>\*</code>
 Returns the value at the given property.
 
-**Kind**: static method of <code>[object-tools](#module_object-tools)</code>
-**Since**: 1.4.0
+**Kind**: static method of <code>[object-get](#module_object-get)</code>  
+**Since**: 1.4.0  
 
 | Param | Type | Description |
 | --- | --- | --- |
