@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/75lb/object-tools.svg?branch=master)](https://travis-ci.org/75lb/object-tools)
 [![Dependency Status](https://david-dm.org/75lb/object-tools.svg)](https://david-dm.org/75lb/object-tools)
 [![Coverage Status](https://coveralls.io/repos/75lb/object-tools/badge.svg?branch=master)](https://coveralls.io/r/75lb/object-tools?branch=master)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_object-tools"></a>
 ## object-tools
@@ -10,7 +11,7 @@ Useful functions for working with objects
 
 **Example**  
 ```js
-var o = require("object-tools");
+var o = require("object-tools")
 ```
 
 * [object-tools](#module_object-tools)
@@ -37,7 +38,7 @@ Merge a list of objects, left to right, into one - to a maximum depth of 10.
 
 **Example**  
 ```js
-> o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 });
+> o.extend({ one: 1, three: 3 }, { one: "one", two: 2 }, { four: 4 })
 { one: 'one',
   three: 3,
   two: 2,
@@ -102,7 +103,7 @@ Runs the iterator function against every key/value pair in the input object
 
 **Example**  
 ```js
-> var total = 0;
+> var total = 0
 > function addToTotal(n){ total += n; }
 > o.each({ eggs: 3, celery: 2, carrots: 1 }, addToTotal)
 > total
@@ -172,10 +173,10 @@ Returns a new object containing the key/value pairs which satisfy the query
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
 > o.where(object, function(value, key){
-      return value > 0;
-  });
+      return value > 0
+  })
 { a: 1, c: 2 }
-> o.where(object, [ "b" ]);
+> o.where(object, [ "b" ])
 { b: 0 }
 > object
 { a: 1, b: 0, c: 2 }
@@ -197,8 +198,8 @@ identical to `o.where(object, query)` with one exception - the found properties 
 > object = { a: 1, b: 0, c: 2 }
 { a: 1, b: 0, c: 2 }
 > o.where(object, function(value, key){
-      return value > 0;
-  });
+      return value > 0
+  })
 { a: 1, c: 2 }
 > object
 { b: 0 }
@@ -212,7 +213,7 @@ Returns a new object containing only the selected fields. See also [without](#mo
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the input object |
-| fields | <code>array</code> | a list of fields to return |
+| fields | <code>string</code> &#124; <code>array</code> | a list of fields to return |
 
 <a name="module_object-tools.get"></a>
 ### o.get(object, expression) ⇒ <code>\*</code>
