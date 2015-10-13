@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garlicnation/object-get.git"
+    "url": "git+https://github.com/75lb/object-get.git"
   },
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/garlicnation/object-get/issues"
+    "url": "https://github.com/75lb/object-get/issues"
   },
-  "homepage": "https://github.com/garlicnation/object-get#readme",
+  "homepage": "https://github.com/75lb/object-get#readme",
   "devDependencies": {
     "jsdoc-to-markdown": "^1.2.0",
     "tape": "^4.2.1"
