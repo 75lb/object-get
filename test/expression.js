@@ -26,3 +26,13 @@ test('.get(object, expression)', function (t) {
   t.strictEqual(objectGet(fixture, 'ksfjglfshg'), undefined)
   t.end()
 })
+
+test('bad args', function (t) {
+  t.throws(function () {
+    objectGet({ one: 1 })
+  })
+  t.throws(function () {
+    objectGet(null, 'one')
+  })
+  t.end()
+})
