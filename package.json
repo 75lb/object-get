@@ -1,7 +1,7 @@
 {
   "name": "object-get",
   "version": "2.0.0",
-  "description": "Gets properties from objects with a path expression.",
+  "description": "Access nested property values at any depth with a simple expression.",
   "main": "lib/object-get.js",
   "scripts": {
     "test": "tape test/*.js",

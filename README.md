@@ -6,7 +6,7 @@
 
 <a name="module_object-get"></a>
 ## object-get
-Gets a value for a property path.
+Access nested property values at any depth with a simple expression.
 
 **Example**  
 ```js
