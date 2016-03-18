@@ -8,6 +8,9 @@
     "docs": "jsdoc2md -d 1 -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "repository": "https://github.com/75lb/object-get",
+  "keywords": [
+    "object", "get", "property", "key", "value", "access", "accessor"
+  ],
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
   "devDependencies": {
