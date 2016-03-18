@@ -10,14 +10,14 @@ Access nested property values at any depth with a simple expression.
 
 **Example**  
 ```js
-var objectGet = require('object-get')
+const objectGet = require('object-get')
 
 const colour = objectGet(mammal, 'fur.appearance.colour')
 ```
 
 Helps avoid long logical expressions like:
 
-```
+```js
 const colour = mammal && mammal.fur && mammal.fur.appearance && mammal.fur.appearance.colour
 ```
 <a name="exp_module_object-get--objectGet"></a>
