@@ -1,6 +1,6 @@
 {
   "name": "object-get",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Access nested property values at any depth with a simple expression.",
   "main": "lib/object-get.js",
   "scripts": {
