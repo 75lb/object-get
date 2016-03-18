@@ -1,6 +1,6 @@
 {
   "name": "object-get",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Access nested property values at any depth with a simple expression.",
   "main": "lib/object-get.js",
   "scripts": {
@@ -9,7 +9,13 @@
   },
   "repository": "https://github.com/75lb/object-get",
   "keywords": [
-    "object", "get", "property", "key", "value", "access", "accessor"
+    "object",
+    "get",
+    "property",
+    "key",
+    "value",
+    "access",
+    "accessor"
   ],
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
