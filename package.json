@@ -5,13 +5,13 @@
   "main": "lib/object-get.js",
   "scripts": {
     "test": "tape test/*.js",
-    "docs": "jsdoc2md -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
+    "docs": "jsdoc2md -d 1 -t jsdoc2md/README.hbs lib/*.js > README.md; echo"
   },
   "repository": "https://github.com/75lb/object-get",
   "author": "Lloyd Brookes <75pound@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "jsdoc-to-markdown": "^1.3.3",
-    "tape": "^4.4.0"
+    "tape": "^4.5.1"
   }
 }
