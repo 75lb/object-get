@@ -5,6 +5,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](https://github.com/feross/standard)
 
 <a name="module_object-get"></a>
+
 # object-get
 Access nested property values at any depth with a simple expression.
 
@@ -21,6 +22,7 @@ Helps avoid long logical expressions like:
 const colour = mammal && mammal.fur && mammal.fur.appearance && mammal.fur.appearance.colour
 ```
 <a name="exp_module_object-get--objectGet"></a>
+
 ## objectGet(object, expression) ⇒ <code>\*</code> ⏏
 Returns the value at the given property.
 
