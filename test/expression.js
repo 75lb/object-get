@@ -1,3 +1,4 @@
+'use strict'
 var test = require('tape')
 var objectGet = require('../')
 
@@ -24,6 +25,20 @@ test('.get(object, expression)', function (t) {
     five: 5
   })
   t.strictEqual(objectGet(fixture, 'ksfjglfshg'), undefined)
+  t.end()
+})
+
+test('arrays in expression', function (t) {
+  var element = {
+    children: [
+      { one : 1 },
+      { two: 2, children: [
+        { three: 3 }
+      ]}
+    ]
+  }
+  t.strictEqual(objectGet(element, 'children[0].one'), 1)
+  t.strictEqual(objectGet(element, 'children[1].children[0].three'), 3)
   t.end()
 })
 

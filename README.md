@@ -14,6 +14,7 @@ Access nested property values at any depth with a simple expression.
 const objectGet = require('object-get')
 
 const colour = objectGet(mammal, 'fur.appearance.colour')
+const text = objectGet(el, 'children[2].children[1].children[1].textContent')
 ```
 
 Helps avoid long logical expressions like:
@@ -31,7 +32,7 @@ Returns the value at the given property.
 | Param | Type | Description |
 | --- | --- | --- |
 | object | <code>object</code> | the input object |
-| expression | <code>string</code> | the property accessor expression |
+| expression | <code>string</code> | the property accessor expression. |
 
 **Example**  
 ```js
