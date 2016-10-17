@@ -47,7 +47,13 @@ test('bad args', function (t) {
     objectGet({ one: 1 })
   })
   t.throws(function () {
+    objectGet({ one: 1 }, undefined)
+  })
+  t.throws(function () {
     objectGet(null, 'one')
+  })
+  t.throws(function () {
+    objectGet(undefined, null)
   })
   t.end()
 })
