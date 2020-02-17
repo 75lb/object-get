@@ -39,6 +39,8 @@ test('arrays in expression', function (t) {
   }
   t.strictEqual(objectGet(element, 'children[0].one'), 1)
   t.strictEqual(objectGet(element, 'children[1].children[0].three'), 3)
+  t.strictEqual(objectGet(element, 'otherChildren[0].four'), undefined)
+  t.strictEqual(objectGet(element, 'children[1].otherChildren[0].five'), undefined)
   t.end()
 })
 
